@@ -3,22 +3,25 @@ root = Tk()
 root.title('ThorDrive GUI')
 root.geometry('640x480')
 
-label1 = Label(root, text='안녕하세요')
-label1.pack()
+txt = Text(root, width=30, height=5)
+txt.pack()
 
-photo = PhotoImage(file='gui/img.png')
-label2 = Label(root, image=photo)
-label2.pack()
+txt.insert(END, '글자를 입력하세요.')
 
-def change():
-    label1.config(text='또 만나요')
-    
-    global photo2
-    photo2 = PhotoImage(file='gui/img2.png')
-    label2.config(image=photo2)
+ent = Entry(root, width=30)
+ent.pack()
+ent.insert(0, '한줄 만입력하세요.')
 
+def btncmd():
+    # 내용 출력
+    print(txt.get('1.0', END)) # 1: 첫번째 라인, 0: column 위치
+    print(ent.get())
 
-btn = Button(root, text='클릭', command=change)
+    # 내용 삭제
+    txt.delete('1.0', END)
+    ent.delete(0, END)
+
+btn = Button(root, text='클릭', command=btncmd)
 btn.pack()
 
 root.mainloop()
